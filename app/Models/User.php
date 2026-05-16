@@ -46,4 +46,9 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+  public function groups()
+{
+    // Ini menghubungkan user ke tabel groups lewat tabel group_members
+    return $this->belongsToMany(\App\Models\Group::class, 'group_members');
+}
 }
