@@ -1,59 +1,68 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Projek 2 - Aplikasi Chat Real-Time (Laravel + Socket.io)
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Aplikasi chat berbasis web *real-time* yang dibangun menggunakan framework **Laravel 11/12** untuk backend dan penyimpanan database MySQL, serta diintegrasikan dengan **Node.js + Socket.io** untuk menangani komunikasi data secara instan (*WebSocket*).
 
-## About Laravel
+## 🚀 Fitur Utama (Core Requirements)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Aplikasi ini telah memenuhi seluruh spesifikasi fungsionalitas yang diwajibkan:
+1. **User Authentication:** Menggunakan sistem autentikasi bawaan Laravel untuk mengamankan hak akses ruang chat.
+2. **WebSocket Integration:** Sinkronisasi pengiriman data chat tanpa perlu memuat ulang halaman (*zero-refresh*).
+3. **Private Chat:** Ruang komunikasi eksklusif dua arah antar-pengguna yang terproteksi dari kebocoran data di sisi klien.
+4. **Group Chat:** Fasilitas komunikasi multi-user di dalam satu ruang obrolan (kamar grup) yang terisolasi.
+5. **User Presence Tracking:** Fitur pemantauan status pengguna secara langsung (*Online/Offline*) dengan indikator warna visual pada sidebar.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+---
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## 🛠️ Arsitektur Teknologi
 
-## Learning Laravel
+* **Backend Framework:** Laravel
+* **Database System:** MySQL (menggunakan Eloquent ORM untuk manajemen data pesan dan pengguna)
+* **Real-time Server:** Node.js (Express & Socket.io Server v4)
+* **Frontend Tools:** Tailwind CSS (via Vite), Axios, & Socket.io Client
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+---
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## ⚙️ Persyaratan Sistem & Instalasi
 
-## Laravel Sponsors
+### 1. Prerequisites
+Pastikan perangkat Anda sudah terinstal:
+* PHP >= 8.2
+* Composer
+* Node.js & NPM
+* MySQL / XAMPP
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### 2. Langkah Instalasi
 
-### Premium Partners
+1. **Clone Repositori:**
+   ```bash
+   git clone [https://github.com/username/projek2.git](https://github.com/username/projek2.git)
+   cd projek2
+2. Instal Dependensi PHP (Laravel) & Frontend (NPM):
+Jalankan perintah ini di terminal untuk mengunduh semua library yang dibutuhkan:
+    composer install
+    npm install
+3. Konfigurasi Environment (.env):
+Salin file konfigurasi bawaan Laravel, lalu sesuaikan nama database Anda di dalamnya (misal: DB_DATABASE=projek2 atau sesuai nama database MySQL kamu):
+    cp .env.example .env
+    php artisan key:generate
+4. Migrasi Database:
+Buat tabel-tabel database (users, messages, groups) secara otomatis ke phpMyAdmin dengan perintah:
+    php artisan migrate
+5. Menjalankan Aplikasi (Laravel & Vite):
+Jalankan server lokal Laravel dan kompilasi Tailwind CSS secara bersamaan di terminal yang berbeda:
+    php artisan serve
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+# Buka terminal baru di folder yang sama, lalu jalankan:
+    npm run dev
+6. Menjalankan Server WebSocket (Node.js):
+    node server.js
 
-## Contributing
+Setelah langkah instalasi selesai, kamu bisa tambahkan bagian penutup ini di bawah teks langkah instalasi tadi untuk menjelaskan alur pengaman chat yang kamu buat ke dosen:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```markdown
+---
 
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## 👨‍💻 Logika Pengaman Ruang Chat (Client-Side Filter)
+Aplikasi ini menerapkan proteksi ketat di sisi klien pada event `terima-pesan` untuk memastikan pesan tidak bocor:
+* **Grup Chat:** Pesan hanya dirender jika `data.groupId` cocok dengan `currentGroupId` yang sedang dibuka pengguna.
+* **Privat Chat:** Pesan disaring secara dua arah (`apakahDariTemanSaya` atau `apakahDariSayaSendiri`). Jika pengguna sedang berada di halaman selamat datang atau membuka room lain, pesan privat akan ditahan di latar belakang dan tidak akan merusak visual halaman.
