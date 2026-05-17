@@ -9,22 +9,17 @@ class Group extends Model
 {
     use HasFactory;
 
-    // Field yang boleh diisi (sesuaikan dengan migration tadi)
-    protected $fillable = ['name', 'description', 'created_by'];
+    protected $fillable = ['name', 'created_id'];
 
-    /**
-     * Relasi Balik: Mengetahui siapa saja anggota di grup ini
-     */
-    public function members()
+    // Anggota di dalam grup ini
+   public function users()
     {
-        return $this->belongsToMany(User::class, 'group_members');
+        return $this->belongsToMany(User::class, 'group_members', 'group_id', 'user_id');
     }
 
-    /**
-     * Relasi ke Pesan: Mengambil semua chat yang ada di grup ini
-     */
+    // Pesan-pesan yang ada di grup ini
     public function messages()
     {
-        return $this->hasMany(Message::class);
+       return $this->hasMany(Message::class);
     }
 }

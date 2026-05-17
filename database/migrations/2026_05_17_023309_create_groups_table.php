@@ -14,10 +14,16 @@ return new class extends Migration
         Schema::create('groups', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('description')->nullable();
-            $table->foreignId('created_by')->constrained('users'); // Pembuat grup
+            $table->foreignId('creator_id')->constrained('users')->onDelete('cascade'); // Pembuat grup
             $table->timestamps();
         });
+        Schema::create('group_user', function (Blueprint $table) {
+        $table->id();
+        $table->foreignId('group_id')->constrained()->onDelete('cascade');
+        $table->foreignId('user_id')->constrained()->onDelete('cascade');
+        $table->timestamps();
+    });
+
     }
 
     /**
