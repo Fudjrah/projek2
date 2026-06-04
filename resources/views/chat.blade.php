@@ -69,7 +69,7 @@
 
     <script>
         // Hubungkan ke server Node.js kamu
-        const socket = io("http://localhost:3000");
+        const socket = io('http://192.168.100.8:3000');
 
         // Ambil data user login dari Laravel
         const currentUserId = "{{ Auth::id() }}";
